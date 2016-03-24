@@ -1,0 +1,24 @@
+%li.task_block{ng: {controller: "TasksController", repeat: "task in project.tasks", mouseenter: 'taskToolbar = true', mouseleave: 'taskToolbar = false'}}
+  .task_status
+    %input{type: "checkbox", ng: {model: "task.status"}}
+  .task_info
+    %strong{class: "task_title", ng: {click: 'toggleTask()', if: "!editTask"}}
+      Title: {{task.title}} Deadline: {{task.deadline}}
+    %form{name: "editTaskForm", class: "edit_task", ng: {submit: "updateTask(task)", if: "editTask"}}
+      %input{type: "text", class: "edit_task_input", placeholder: "Set new title...", ng: {model: 'task.title'}, required: true}
+      -# %input{type: "date", class: "edit_task_input_date", ng: {model: 'task.deadline'}, required: true}
+      %input.form-control{"bs-datepicker" => "", :name => "date", "ng-model" => "selectedDate", :type => "text"}
+      %input{type: "submit", class: "edit_task_button", value: "Change", ng: {disabled: 'editTaskForm.$invalid'}}
+    .comments_block{ng: {show: "showMe"}}
+      %strong Comments:
+      %ul.comments
+        %li.comment{ng: {repeat: "comment in task.comments"}}
+          %p {{comment.text}}
+        %form{name: "commentForm", ng: {disabled: 'commentForm.$invalid'}}
+          %input{type: "text", required: true}
+          %input{type: "submit", value: "Add comment"}
+  .task_toolbar{ng: {show: "taskToolbar"}}
+    %input{class: "edit_task_img", src: "/assets/edit_task.png", type: "image", ng: {click: 'showForm(task)'}}
+    %image{src: "/assets/delimiter toolbar_task_img.png"}
+    %image{class: "del_task_img", src: "/assets/delete_task.png", ng: {click: "deleteTask(task)"}}
+

@@ -1,0 +1,87 @@
+// Place all the styles related to the Projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.container
+  .title
+    text-align: center
+  .projects
+    .project
+      margin: 40px 23%
+      .project_block
+        background-image: url(/assets/back_proj_title.png)
+        display: inline-block
+        margin-bottom: -4px
+        padding: 10px 15px
+        width: 615px
+        .project_title
+          float: left
+          font-size: 19px
+          color: whitesmoke
+        .edit_project
+          float: left
+          .edit_project_input
+            background-image: url(/assets/back_proj_inp.png)
+        .project_toolbar
+          float: right
+          .edit_project_img, .del_project_img
+            cursor: pointer
+      .add_task_block
+        background-color: whitesmoke
+        display: inline-block
+        margin-bottom: -5px
+        padding: 10px 15px
+        width: 615px
+        .img_plus_task
+          float: left
+        .add_task
+          float: left
+          .add_task_input
+            background-image: url(/assets/back_proj_inp.png)
+            width: 250px
+          .add_task_input_date
+            background-image: url(/assets/back_proj_inp.png)
+        .add_task_button
+          background-image: url(/assets/back_proj_inp_but.png)
+          color: whitesmoke
+      .task_list
+        list-style-type: none
+        padding: 0
+        .task_block
+          border-bottom: 1px solid #E7EBEA
+          background-color: white
+          display: inline-block
+          margin-bottom: -5px
+          width: 615px
+          .task_status
+            float: left
+            padding: 10px 15px
+            padding-right: 15px
+          .task_info
+            float: left
+            width: 450px
+            padding: 10px 15px
+            border-left: 1px solid #E7EBEA
+            border-right: 1px solid #E7EBEA
+            .task_title
+              cursor: pointer
+            .comments_block
+              .comments
+                list-style-type: none
+          .task_toolbar
+            float: left
+            padding: 10px 42px
+            .edit_task_img, .del_task_img
+              cursor: pointer
+
+  .add_project
+    width: 20%
+    margin: 0 auto
+    .add_project_button
+      background-image: url(/assets/back_add_list.png)
+      color: whitesmoke
+      margin: 10px 55px
+  .copyright
+    padding-right: 12px
+    text-align: center

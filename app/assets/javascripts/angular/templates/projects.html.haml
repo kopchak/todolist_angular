@@ -1,0 +1,11 @@
+.container
+  .title
+    %h1 Simple Todo Lists
+    %h2 From Ruby Garage
+  .projects{ng: {include: "'angular/templates/project.html'"}}
+  .add_project
+    %input{type: "button", class: "add_project_button", value: "Add ToDo List", ng: {click: 'addProject = true', hide: 'addProject'}}
+    %form{name: "projectForm",class: "add_project_form", ng: {submit: 'createProject()', show: 'addProject'}}
+      %input{type: "text", placeholder: "Add a new todo list", ng: {model: 'projectData.title'}, required: true}
+      %input{type: "submit", value: "Add", ng: {click: 'addProject = false', disabled: 'projectForm.$invalid'}}
+  %h5{class: "copyright"} ©Ruby Garage

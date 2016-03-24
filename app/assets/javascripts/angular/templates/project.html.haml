@@ -1,0 +1,19 @@
+.project{ ng: {repeat: "project in projects | orderBy: '-id':true"} }
+  .project_block{ng: {mouseenter: 'projectToolbar = true', mouseleave: 'projectToolbar = false'}}
+    .project_title
+      %image{src: "/assets/notepad.gif"}
+      %strong{ng: {hide: "editProject"}} {{project.title}}
+    %form{name: "projectForm", class: "edit_project", ng: {submit: 'updateProject(project)', show: "editProject"}}
+      %input{type: "text", class: "edit_project_input", ng: {model: 'project.title'}, placeholder: "Set new title", required: true}
+      %input{type: "submit", value: "Change", ng: {click: 'editProject = false', disabled: 'projectForm.$invalid'}}
+    .project_toolbar{ng: {show: "projectToolbar"}}
+      %image{class: "edit_project_img", src: "/assets/edit_proj.gif", ng: {click: 'editProject = true'}}
+      %image{src: "/assets/delimiter toolbar_project_img.png"}
+      %image{class: "del_project_img", src: "/assets/delete_project.gif", ng: {click: "deleteProject(project)"}}
+  .add_task_block
+    %image{class: "img_plus_task", src: "/assets/inp_img.gif"}
+    %form{name: "taskForm", class: "add_task", ng: {controller: 'TasksController', submit: "createTask(project)",disabled: 'taskForm.$invalid'}}
+      %input{type: "text", class: "add_task_input", placeholder: "Start typing here to create a task...", ng: {model: 'taskData.title'}, required: true}
+      %input{type: "date", class: "add_task_input_date", ng: {model: 'taskData.deadline'}, required: true}
+      %input{type: "submit", class: "add_task_button", value: "Add task"}
+  %ul.task_list{ng: {include: "'angular/templates/task.html'"}}
