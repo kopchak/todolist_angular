@@ -1,8 +1,9 @@
 window.todoApp = angular.module('TodoList', [
-  'ui.router'
   'templates'
   'ngAnimate'
-  'mgcrea.ngStrap'
+  'ui.router'
+  'ui.sortable'
+  'ui.bootstrap'
 ])
 
 todoApp.config [

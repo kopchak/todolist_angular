@@ -11,14 +11,13 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'angularjs-rails'
 gem 'angular_rails_csrf'
 gem 'angular-rails-templates'
-gem 'angularjs-rails-resource', '~> 2.0.0'
+gem "bower-rails", "~> 0.10.0"
 
 gem 'haml-rails', '0.9.0'
 gem 'sass-rails', '~> 5.0'
-gem 'bootstrap-sass', '3.3.6'
+gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'active_model_serializers'
 

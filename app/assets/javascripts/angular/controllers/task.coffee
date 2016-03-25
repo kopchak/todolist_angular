@@ -4,30 +4,43 @@ todoApp.controller 'TasksController', [
   'taskFactory'
   ($scope, $http, taskFactory) ->
     $scope.taskData = {}
-    $scope.showMe = false
-    $scope.taskData.deadline = new Date()
+
+    $scope.newDate = ->
+      $scope.taskData.deadline = new Date()
 
     $scope.createTask = (project) ->
       taskFactory.addTask($scope.taskData, project.id).success (data) ->
         project.tasks.push(data.task)
         $scope.taskData = {}
+        $scope.newDate()
 
-    $scope.updateTask = (task) ->
-      $scope.showForm(task)
-      taskFactory.editTask(task)
+    $scope.updateTask = (task, taskData) ->
+      task.title = taskData.title
+      task.deadline = taskData.date
+      taskFactory.editTask(task).success (data) ->
+        task.deadline = data.task.deadline
+        task.editTask = !task.editTask
 
     $scope.deleteTask = (task) ->
       $(event.target).parents('.task_block').remove()
       taskFactory.deleteTask(task)
 
-    $scope.toggleTask = ->
-      $scope.showMe = !$scope.showMe
+    $scope.showEditForm = (task) ->
+      $scope.taskData.title = task.title
+      $scope.taskData.date = new Date(task.deadline)
+      task.editTask = !task.editTask
 
-    $scope.showForm = (task) ->
-      $scope.editTask = !$scope.editTask
-      $scope.task.deadline = new Date(task.deadline)
-      # $scope.task.deadline = new Date(task.deadline).toLocaleDateString().split('/').join('-')
-      # $scope.task.deadline = new Date().toLocaleDateString().split('/').join('-')
-      # debugger
+    $scope.showComments = (task) ->
+      task.commentsList = !task.commentsList
+
+    $scope.sortableOptions =
+      stop: ->
+        tasks = $scope.project.tasks
+        tasks.map (task) ->
+          index = $scope.project.tasks.indexOf(task)
+          task.position = index
+          taskFactory.editTask(task)
+
+    $scope.newDate()
+
 ]
-

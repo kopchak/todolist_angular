@@ -16,4 +16,4 @@
       %input{type: "text", class: "add_task_input", placeholder: "Start typing here to create a task...", ng: {model: 'taskData.title'}, required: true}
       %input{type: "date", class: "add_task_input_date", ng: {model: 'taskData.deadline'}, required: true}
       %input{type: "submit", class: "add_task_button", value: "Add task"}
-  %ul.task_list{ng: {include: "'angular/templates/task.html'"}}
+  %ul.task_list{"ui-sortable" => "sortableOptions", ng: {include: "'angular/templates/task.html'", controller: "TasksController", model: "project.tasks"}}

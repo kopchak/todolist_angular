@@ -44,8 +44,6 @@ GEM
       tilt
     angular_rails_csrf (1.0.4)
       rails (>= 3, < 5)
-    angularjs-rails (1.5.0)
-    angularjs-rails-resource (2.0.0)
     arel (6.0.3)
     autoprefixer-rails (6.3.1)
       execjs
@@ -56,6 +54,7 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bower-rails (0.10.0)
     builder (3.2.2)
     byebug (8.2.2)
     coffee-rails (4.1.1)
@@ -190,9 +189,8 @@ DEPENDENCIES
   active_model_serializers
   angular-rails-templates
   angular_rails_csrf
-  angularjs-rails
-  angularjs-rails-resource (~> 2.0.0)
-  bootstrap-sass (= 3.3.6)
+  bootstrap-sass (~> 3.3.6)
+  bower-rails (~> 0.10.0)
   byebug
   coffee-rails (~> 4.1.0)
   devise

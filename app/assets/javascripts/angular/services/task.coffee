@@ -12,7 +12,7 @@ todoApp.factory 'taskFactory', [
         $http
           method: 'PATCH'
           url: '/projects/' + taskData.project_id + '/tasks/' + taskData.id
-          params: {id: taskData.id, title: taskData.title, deadline: taskData.deadline}
+          params: taskData
 
       deleteTask: (taskData) ->
         $http.delete '/projects/' + taskData.project_id + '/tasks/' + taskData.id

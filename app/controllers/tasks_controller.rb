@@ -9,10 +9,9 @@ class TasksController < ApplicationController
   end
 
   def update
-    # byebug
     task = Task.find(params[:id])
-    render json: task.update(task_params)
-    # byebug
+    task.update(task_params)
+    render json: task
   end
 
   def destroy

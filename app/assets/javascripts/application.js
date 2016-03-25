@@ -15,11 +15,11 @@
 //= require jquery_ujs
 
 //= require angular
-//= require angular-strap
 //= require angular-animate
-//= require angular-rails-templates
 //= require angular-ui-router
-//= require angular-resource
+//= require angular-bootstrap
+//= require angular-ui-sortable
+//= require angular-rails-templates
 //= require todoApp
 
 //= require_tree .
