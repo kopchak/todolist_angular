@@ -21,6 +21,9 @@ todoApp.controller 'TasksController', [
         task.deadline = data.task.deadline
         task.editTask = !task.editTask
 
+    $scope.taskDone = (task) ->
+      taskFactory.editTask(task)
+
     $scope.deleteTask = (task) ->
       $(event.target).parents('.task_block').remove()
       taskFactory.deleteTask(task)

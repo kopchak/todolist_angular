@@ -1,6 +1,6 @@
 %li.task_block{ng: {repeat: "task in project.tasks", mouseenter: 'taskToolbar = true', mouseleave: 'taskToolbar = false'}}
   .task_status
-    %input{type: "checkbox", ng: {click: "updateTask(task, taskData)", model: "task.status"}}
+    %input{type: "checkbox", ng: {click: "taskDone(task)", model: "task.status"}}
   .task_info
     %strong{class: "task_title", ng: {init: "task.commentsList = false", click: 'showComments(task)', if: "!task.editTask"}}
       Title: {{task.title}} Deadline: {{task.deadline}}

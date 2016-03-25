@@ -2,12 +2,12 @@
   .project_block{ng: {mouseenter: 'projectToolbar = true', mouseleave: 'projectToolbar = false'}}
     .project_title
       %image{src: "/assets/notepad.gif"}
-      %strong{ng: {hide: "editProject"}} {{project.title}}
-    %form{name: "projectForm", class: "edit_project", ng: {submit: 'updateProject(project)', show: "editProject"}}
-      %input{type: "text", class: "edit_project_input", ng: {model: 'project.title'}, placeholder: "Set new title", required: true}
+      %strong{ng: {if: "!project.editProject"}} {{project.title}}
+    %form{name: "projectForm", class: "edit_project", ng: {submit: 'updateProject(project, projectData)', if: "project.editProject"}}
+      %input{type: "text", class: "edit_project_input", ng: {model: 'projectData.title'}, placeholder: "Set new title", required: true}
       %input{type: "submit", value: "Change", ng: {click: 'editProject = false', disabled: 'projectForm.$invalid'}}
     .project_toolbar{ng: {show: "projectToolbar"}}
-      %image{class: "edit_project_img", src: "/assets/edit_proj.gif", ng: {click: 'editProject = true'}}
+      %image{class: "edit_project_img", src: "/assets/edit_proj.gif", ng: {click: 'showEditForm(project)'}}
       %image{src: "/assets/delimiter toolbar_project_img.png"}
       %image{class: "del_project_img", src: "/assets/delete_project.gif", ng: {click: "deleteProject(project)"}}
   .add_task_block
