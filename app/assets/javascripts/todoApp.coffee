@@ -4,6 +4,7 @@ window.todoApp = angular.module('TodoList', [
   'ui.router'
   'ui.sortable'
   'ui.bootstrap'
+  'ngFileUpload'
 ])
 
 todoApp.config [

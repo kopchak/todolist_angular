@@ -20,6 +20,7 @@ todoApp.controller 'ProjectsController', [
       project.editProject = !project.editProject
 
     $scope.deleteProject = (project) ->
+      # $scope.task.comments.splice(index, 1)
       $(event.target).parents('.project').remove()
       projectFactory.deleteProject(project)
 

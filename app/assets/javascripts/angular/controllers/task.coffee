@@ -25,6 +25,7 @@ todoApp.controller 'TasksController', [
       taskFactory.editTask(task)
 
     $scope.deleteTask = (task) ->
+      # $scope.task.comments.splice(index, 1)
       $(event.target).parents('.task_block').remove()
       taskFactory.deleteTask(task)
 

@@ -12,10 +12,18 @@
       %strong Comments:
       %ul.comments
         %li.comment{ng: {repeat: "comment in task.comments"}}
-          %p {{comment.text}}
-        %form{name: "commentForm", ng: {disabled: 'commentForm.$invalid'}}
-          %input{type: "text", required: true}
-          %input{type: "submit", value: "Add comment"}
+          %p 
+            %a{class: "close", ng: {controller: "CommentsController", click: "deleteComment(comment, $index)"}} x
+            {{comment.text}}
+          %a some file
+        %form{name: "commentForm", class: "add_comment form-inline", ng: {controller: "CommentsController", submit: "addComment(task)"}}
+          %input.form-control.input-sm{type: "text", value: "value of file", ng:{model: 'commentData.text'}, required: true}
+          %input.btn.btn-primary.btn-sm{type: "submit", value: "Add comment", ng: {disabled: 'commentForm.$invalid'}}
+          .button.btn.btn-primary.btn-sm(ng-model="files" ngf-multiple="true" ngf-select="") Attach files
+          .new-attachments
+            %p{ng: {repeat: 'file in files'}}
+              %span.glyphicon.glyphicon-file {{file.name}}
+              %a{href: '', ng: {click: 'deleteAttach($index)'}} &times;
   .task_toolbar{ng: {show: "taskToolbar"}}
     %input{class: "edit_task_img", src: "/assets/edit_task.png", type: "image", ng: {init: "task.editTask = false", click: 'showEditForm(task)'}}
     %image{src: "/assets/delimiter toolbar_task_img.png"}

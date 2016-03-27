@@ -14,6 +14,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'angular_rails_csrf'
 gem 'angular-rails-templates'
 gem "bower-rails", "~> 0.10.0"
+gem 'angularjs-file-upload-rails', '~> 2.2.0'
+
+gem 'carrierwave'
 
 gem 'haml-rails', '0.9.0'
 gem 'sass-rails', '~> 5.0'

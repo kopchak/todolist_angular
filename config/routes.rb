@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   resources :tasks, only: [] do
-    resources :comments, except: [:new, :edit, :index]
+    resources :comments, only: [:create, :destroy]
   end
 
   root to: 'application#angular'

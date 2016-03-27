@@ -15,6 +15,7 @@
 //= require jquery_ujs
 
 //= require angular
+//= require ng-file-upload
 //= require angular-animate
 //= require angular-ui-router
 //= require angular-bootstrap
