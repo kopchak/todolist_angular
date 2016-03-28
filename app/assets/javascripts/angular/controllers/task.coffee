@@ -24,9 +24,8 @@ todoApp.controller 'TasksController', [
     $scope.taskDone = (task) ->
       taskFactory.editTask(task)
 
-    $scope.deleteTask = (task) ->
-      # $scope.task.comments.splice(index, 1)
-      $(event.target).parents('.task_block').remove()
+    $scope.deleteTask = (task, index) ->
+      $scope.project.tasks.splice(index, 1)
       taskFactory.deleteTask(task)
 
     $scope.showEditForm = (task) ->

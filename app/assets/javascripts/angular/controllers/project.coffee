@@ -18,10 +18,10 @@ todoApp.controller 'ProjectsController', [
       project.title = projectData.title
       projectFactory.updateProject(project)
       project.editProject = !project.editProject
+      $scope.projectData = {}
 
-    $scope.deleteProject = (project) ->
-      # $scope.task.comments.splice(index, 1)
-      $(event.target).parents('.project').remove()
+    $scope.deleteProject = (project, index) ->
+      $scope.projects.splice(index, 1)
       projectFactory.deleteProject(project)
 
     $scope.showEditForm = (project) ->

@@ -1,0 +1,17 @@
+%li.comment{ng: {repeat: "comment in task.comments"}}
+  %p
+    {{comment.text}}
+    %a{class: "close", ng: {controller: "CommentsController", click: "deleteComment(comment, $index)"}} x
+  %ul.comment_files
+    %li{ng: {repeat: 'attachment in comment.attachments'}}
+      %span.glyphicon.glyphicon-file
+        %a{href: '{{attachment.file.file.url}}', download: true} {{attachment.file_identifier}}
+      %a.delete_attachment{ng: {controller: "CommentsController", click: 'deleteAttachment(attachment, $index)'}} x
+%form{name: "commentForm", class: "add_comment form-inline", ng: {controller: "CommentsController", submit: "addComment(task)"}}
+  %input.form-control.input-sm{type: "text", value: "value of file", ng:{model: 'commentData.text'}, required: true}
+  %input.btn.btn-primary.btn-sm{type: "submit", value: "Add comment", ng: {disabled: 'commentForm.$invalid'}}
+  .button.btn.btn-primary.btn-sm(ng-model="files" ngf-multiple="true" ngf-select="") Attach file
+  .new_attachments
+    %p{ng: {repeat: 'file in files'}}
+      %span.glyphicon.glyphicon-file {{file.name}}
+      %a.del_new_attachment{href: '', ng: {click: 'delNewAttachment($index)'}} x

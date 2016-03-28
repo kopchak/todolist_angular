@@ -2,30 +2,18 @@
   .task_status
     %input{type: "checkbox", ng: {click: "taskDone(task)", model: "task.status"}}
   .task_info
-    %strong{class: "task_title", ng: {init: "task.commentsList = false", click: 'showComments(task)', if: "!task.editTask"}}
-      Title: {{task.title}} Deadline: {{task.deadline}}
-    %form{name: "editTaskForm", class: "edit_task", ng: {submit: "updateTask(task, taskData)", if: "task.editTask"}}
-      %input{type: "text", class: "edit_task_input", placeholder: "Set new title...", ng: {model: 'taskData.title'}, required: true}
-      %input{type: "date", class: "edit_task_input_date", ng: {model: 'taskData.date'}, required: true}
-      %input{type: "submit", class: "edit_task_button", value: "Change", ng: {disabled: 'editTaskForm.$invalid'}}
+    .task_title
+      %strong{class: "", ng: {init: "task.commentsList = false", click: 'showComments(task)', if: "!task.editTask"}}
+        Title: {{task.title}} Deadline: {{task.deadline}}
+    %form{name: "editTaskForm", class: "edit_task form-inline", ng: {submit: "updateTask(task, taskData)", if: "task.editTask"}}
+      %input.form-control.input-sm{type: "text", class: "edit_task_input", placeholder: "Set new title...", ng: {model: 'taskData.title'}, required: true}
+      %input.form-control.input-sm{type: "date", class: "edit_task_input_date", ng: {model: 'taskData.date'}, required: true}
+      %input.btn.btn-success.btn-sm{type: "submit", class: "edit_task_button", value: "Change", ng: {disabled: 'editTaskForm.$invalid'}}
     .comments_block{ng: {if: "task.commentsList"}}
       %strong Comments:
-      %ul.comments
-        %li.comment{ng: {repeat: "comment in task.comments"}}
-          %p 
-            %a{class: "close", ng: {controller: "CommentsController", click: "deleteComment(comment, $index)"}} x
-            {{comment.text}}
-          %a some file
-        %form{name: "commentForm", class: "add_comment form-inline", ng: {controller: "CommentsController", submit: "addComment(task)"}}
-          %input.form-control.input-sm{type: "text", value: "value of file", ng:{model: 'commentData.text'}, required: true}
-          %input.btn.btn-primary.btn-sm{type: "submit", value: "Add comment", ng: {disabled: 'commentForm.$invalid'}}
-          .button.btn.btn-primary.btn-sm(ng-model="files" ngf-multiple="true" ngf-select="") Attach files
-          .new-attachments
-            %p{ng: {repeat: 'file in files'}}
-              %span.glyphicon.glyphicon-file {{file.name}}
-              %a{href: '', ng: {click: 'deleteAttach($index)'}} &times;
+      %ul.comments{ng: {include: "'angular/templates/comment.html'"}}
   .task_toolbar{ng: {show: "taskToolbar"}}
     %input{class: "edit_task_img", src: "/assets/edit_task.png", type: "image", ng: {init: "task.editTask = false", click: 'showEditForm(task)'}}
     %image{src: "/assets/delimiter toolbar_task_img.png"}
-    %image{class: "del_task_img", src: "/assets/delete_task.png", ng: {click: "deleteTask(task)"}}
+    %image{class: "del_task_img", src: "/assets/delete_task.png", ng: {click: "deleteTask(task, $index)"}}
 

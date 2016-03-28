@@ -15,16 +15,19 @@
         margin-bottom: -5px
         padding: 10px 15px
         width: 615px
-        .project_title
+        .project_info
           float: left
           font-size: 19px
           color: whitesmoke
+          padding: 2px
+          .project_title
+            padding: 5px
         .edit_project
           float: left
           margin-left: 10px
           .edit_project_input
-            background-image: url(/assets/back_proj_inp.png)
         .project_toolbar
+          padding-top: 4px
           float: right
           .edit_project_img, .del_project_img
             cursor: pointer
@@ -40,16 +43,15 @@
           float: left
           margin-left: 10px
           .add_task_input
-            background-image: url(/assets/back_proj_inp.png)
             width: 250px
           .add_task_input_date
-            background-image: url(/assets/back_proj_inp.png)
         .add_task_button
-          background-image: url(/assets/back_proj_inp_but.png)
           color: whitesmoke
       .task_list
         list-style-type: none
         padding: 0
+        .task_block:hover
+          background-color: #FCFED5
         .task_block
           border-bottom: 1px solid #E7EBEA
           background-color: white
@@ -58,18 +60,19 @@
           width: 615px
           .task_status
             float: left
-            padding: 10px 15px
+            padding: 14px 15px
             padding-right: 15px
             input[type="checkbox"]
               cursor: pointer
           .task_info
             float: left
             width: 450px
-            padding: 10px 15px
+            padding: 5px 15px 5px 15px
             border-left: 1px solid #E7EBEA
             border-right: 1px solid #E7EBEA
             .task_title
               cursor: pointer
+              margin: 10px 0
             .comments_block
               margin-top: 5px
               .comments
@@ -79,11 +82,22 @@
                   border: 1px solid gainsboro
                   margin: 10px 0
                   padding: 5px
+                  .comment_files
+                    list-style-type: none
+                    padding-left: 5px
+                    .delete_attachment
+                      color: red
+                      cursor: pointer
+                      margin-left: 5px
                 .add_comment
-                  margin: 10px 11px
+                  margin: 10px 14px
+                  .new_attachments
+                    margin: 5px
+                    .del_new_attachment
+                      color: red
           .task_toolbar
             float: left
-            padding: 10px 42px
+            padding: 15px 42px
             .edit_task_img, .del_task_img
               cursor: pointer
 
@@ -95,5 +109,5 @@
       color: whitesmoke
       margin: 10px 55px
   .copyright
-    padding-right: 12px
+    padding-right: 5px
     text-align: center
