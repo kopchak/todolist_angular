@@ -1,15 +1,18 @@
 class CommentsController < ApplicationController
+  load_and_authorize_resource :task
+  load_and_authorize_resource through: :task
+
   def create
-    render json: Comment.create(task_params)
+    @comment.save
+    render json: @comment
   end
 
   def destroy
-    comment = Comment.find(params[:id])
-    render json: comment.destroy
+    render json: @comment.destroy
   end
 
   private
-  def task_params
+  def comment_params
     params.permit(:text, :file, :task_id)
   end
 end

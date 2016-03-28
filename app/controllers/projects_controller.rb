@@ -1,20 +1,21 @@
 class ProjectsController < ApplicationController
+  load_and_authorize_resource
+
   def index
-    render json: Project.all, root: false
+    render json: @projects, root: false
   end
 
   def create
-    render json: Project.create(project_params)
+    @project.save
+    render json: @project
   end
 
   def update
-    project = Project.find(params[:id])
-    render json: project.update(project_params)
+    render json: @project.update(project_params)
   end
 
   def destroy
-    project = Project.find(params[:id])
-    render json: project.destroy
+    render json: @project.destroy
   end
 
   private

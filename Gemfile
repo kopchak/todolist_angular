@@ -13,8 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'angular_rails_csrf'
 gem 'angular-rails-templates'
-gem "bower-rails", "~> 0.10.0"
-gem 'angularjs-file-upload-rails', '~> 2.2.0'
+gem 'bower-rails", "~> 0.10.0'
 
 gem 'carrierwave'
 
@@ -30,7 +29,7 @@ gem 'devise'
 
 gem 'responders', '~> 2.0'
 
-# gem 'cancancan', '~> 1.10'
+gem 'cancancan', '~> 1.10'
 
 group :development, :test do
   gem 'byebug'

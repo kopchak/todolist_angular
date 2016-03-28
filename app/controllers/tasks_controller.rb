@@ -1,22 +1,19 @@
 class TasksController < ApplicationController
-  def index
-    project = Project.find(params[:project_id])
-    render json: project.tasks
-  end
+  load_and_authorize_resource :project
+  load_and_authorize_resource through: :project
 
   def create
-    render json: Task.create(task_params)
+    @task.save
+    render json: @task
   end
 
   def update
-    task = Task.find(params[:id])
-    task.update(task_params)
-    render json: task
+    @task.update(task_params)
+    render json: @task
   end
 
   def destroy
-    task = Task.find(params[:id])
-    render json: task.destroy
+    render json: @task.destroy
   end
 
   private

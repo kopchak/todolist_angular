@@ -1,12 +1,14 @@
 class AttachmentsController < ApplicationController
+  load_and_authorize_resource :comment
+  load_and_authorize_resource through: :comment
+
   def create
-    comment = Comment.find(params[:comment_id])
-    render json: comment.attachments.create(attachment_params)
+    @attachment.save
+    render json: @attachment
   end
 
   def destroy
-    attachment = Attachment.find(params[:id])
-    render json: attachment.destroy
+    render json: @attachment.destroy
   end
 
   private
