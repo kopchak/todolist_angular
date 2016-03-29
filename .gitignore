@@ -15,7 +15,15 @@
 /log/*
 !/log/.keep
 /tmp
-/config/database.yml
-.byebug_history
-/public/uploads/
 
+# Ignore bower components
+/lib/assets/bower_components
+
+# Ignore uploads
+/public/uploads
+
+# Ignore db
+/config/database.yml
+
+# Ignore byebug log
+.byebug_history
