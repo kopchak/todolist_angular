@@ -24,6 +24,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'active_model_serializers'
 
 gem 'devise'
+gem 'devise_token_auth'
+gem 'omniauth-facebook'
 
 gem 'cancancan', '~> 1.10'
 

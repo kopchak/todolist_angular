@@ -1,0 +1,9 @@
+%h1 Sign in page
+%form{"ng-init" => "loginForm = {}", "ng-submit" => "submitLogin(loginForm)", :role => "form"}
+  .form-group
+    %label email
+    %input.form-control{:name => "email", "ng-model" => "loginForm.email", :required => "required", :type => "email"}/
+  .form-group
+    %label password
+    %input.form-control{:name => "password", "ng-model" => "loginForm.password", :required => "required", :type => "password"}/
+  %button.btn.btn-primary.btn-lg{:type => "submit"} Sign in

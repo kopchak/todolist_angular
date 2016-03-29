@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  mount_devise_token_auth_for 'User', at: 'auth'
 
   resources :projects, except: [:new, :edit, :show] do
     resources :tasks, only: [:create, :update, :destroy]
