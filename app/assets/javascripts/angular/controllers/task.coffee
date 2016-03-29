@@ -1,36 +1,37 @@
 todoApp.controller 'TasksController', [
   '$scope'
-  '$http'
   'taskFactory'
-  ($scope, $http, taskFactory) ->
+  ($scope, taskFactory) ->
     $scope.taskData = {}
 
     $scope.newDate = ->
       $scope.taskData.deadline = new Date()
 
     $scope.createTask = (project) ->
-      taskFactory.addTask($scope.taskData, project.id).success (data) ->
+      $scope.taskData.project_id = project.id
+      taskFactory.create($scope.taskData).success (data) ->
         project.tasks.push(data.task)
         $scope.taskData = {}
         $scope.newDate()
 
-    $scope.updateTask = (task, taskData) ->
-      task.title = taskData.title
-      task.deadline = taskData.date
-      taskFactory.editTask(task).success (data) ->
+    $scope.updateTask = (task) ->
+      task.title = $scope.taskData.title
+      task.deadline = $scope.taskData.deadline
+      taskFactory.update(task).success (data) ->
         task.deadline = data.task.deadline
-        task.editTask = !task.editTask
+        task.editTask = false
+        $scope.taskData = {}
 
     $scope.taskDone = (task) ->
-      taskFactory.editTask(task)
+      taskFactory.update(task)
 
     $scope.deleteTask = (task, index) ->
-      $scope.project.tasks.splice(index, 1)
-      taskFactory.deleteTask(task)
+      taskFactory.destroy(task).success (data) ->
+        $scope.project.tasks.splice(index, 1)
 
     $scope.showEditForm = (task) ->
       $scope.taskData.title = task.title
-      $scope.taskData.date = new Date(task.deadline)
+      $scope.taskData.deadline = new Date(task.deadline)
       task.editTask = !task.editTask
 
     $scope.showComments = (task) ->
@@ -42,7 +43,7 @@ todoApp.controller 'TasksController', [
         tasks.map (task) ->
           index = $scope.project.tasks.indexOf(task)
           task.position = index
-          taskFactory.editTask(task)
+          taskFactory.update(task)
 
     $scope.newDate()
 

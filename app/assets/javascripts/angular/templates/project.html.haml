@@ -1,19 +1,18 @@
-.project{ ng: {repeat: "project in projects | orderBy: '-id':true"} }
+.project{ ng: {repeat: "project in projects"} }
   .project_block{ng: {mouseenter: 'projectToolbar = true', mouseleave: 'projectToolbar = false'}}
     .project_info
-      %image{src: "/assets/notepad.gif"}
+      %span.glyphicon.glyphicon-th-list
       %strong.project_title{ng: {if: "!project.editProject"}} {{project.title}}
-    %form{name: "projectForm", class: "edit_project form-inline", ng: {submit: 'updateProject(project, projectData)', if: "project.editProject"}}
-      %input.edit_project_input.form-control.input-sm{type: "text", ng: {model: 'projectData.title'}, placeholder: "Set new title", required: true}
-      %input.btn.btn-success.btn-sm{type: "submit", value: "Change", ng: {click: 'editProject = false', disabled: 'projectForm.$invalid'}}
+    %form.edit_project.form-inline{name: "projectForm", ng: {submit: 'updateProject(project)', if: "project.editProject"}}
+      %input.edit_project_input.form-control.input-sm{type: "text", ng: {model: 'projectData.title'}, placeholder: "#{I18n.t('project.change_title')}", required: true}
+      %input.btn.btn-success.btn-sm{type: "submit", value: "#{I18n.t('project.submit_change')}", ng: {click: 'editProject = false', disabled: 'projectForm.$invalid'}}
     .project_toolbar{ng: {show: "projectToolbar"}}
-      %image{class: "edit_project_img", src: "/assets/edit_proj.gif", ng: {click: 'showEditForm(project)'}}
-      %image{src: "/assets/delimiter toolbar_project_img.png"}
-      %image{class: "del_project_img", src: "/assets/delete_project.gif", ng: {click: "deleteProject(project, $index)"}}
+      %span.glyphicon.glyphicon-pencil.edit_project_img{ng: {click: 'showEditForm(project)'}}
+      %span.glyphicon.glyphicon-trash.del_project_img{ng: {click: "deleteProject(project, $index)"}}
   .add_task_block
-    %image{class: "img_plus_task", src: "/assets/inp_img.gif"}
-    %form{name: "taskForm", class: "add_task form-inline", ng: {controller: 'TasksController', submit: "createTask(project)",disabled: 'taskForm.$invalid'}}
-      %input.form-control.input-sm{type: "text", class: "add_task_input", placeholder: "Start typing here to create a task...", ng: {model: 'taskData.title'}, required: true}
-      %input.form-control.input-sm{type: "date", class: "add_task_input_date", ng: {model: 'taskData.deadline'}, required: true}
-      %input.btn.btn-success.btn-sm{type: "submit", class: "add_task_button", value: "Add task", ng: {disabled: 'taskForm.$invalid'}}
+    %span.glyphicon.glyphicon-plus.img_plus_task
+    %form.add_task.form-inline{name: "taskForm", ng: {controller: 'TasksController', submit: "createTask(project)",disabled: 'taskForm.$invalid'}}
+      %input.form-control.input-sm.add_task_input{type: "text", placeholder: "#{I18n.t('project.add_task')}", ng: {model: 'taskData.title'}, required: true}
+      %input.form-control.input-sm.add_task_input_date{type: "date", ng: {model: 'taskData.deadline'}, required: true}
+      %input.btn.btn-success.btn-sm.add_task_button{type: "submit", value: "#{I18n.t('project.submit_add_task')}", ng: {disabled: 'taskForm.$invalid'}}
   %ul.task_list{"ui-sortable" => "sortableOptions", ng: {include: "'angular/templates/task.html'", controller: "TasksController", model: "project.tasks"}}

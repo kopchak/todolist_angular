@@ -13,7 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'angular_rails_csrf'
 gem 'angular-rails-templates'
-gem 'bower-rails", "~> 0.10.0'
+gem 'bower-rails', '~> 0.10.0'
 
 gem 'carrierwave'
 
@@ -24,10 +24,6 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'active_model_serializers'
 
 gem 'devise'
-# gem 'devise_token_auth'
-# gem 'omniauth-facebook'
-
-gem 'responders', '~> 2.0'
 
 gem 'cancancan', '~> 1.10'
 

@@ -2,13 +2,13 @@ todoApp.factory 'commentFactory', [
   '$http'
   ($http) ->
     {
-      addComment: (commentData, task_id) ->
+      create: (commentData) ->
         $http
           method: 'POST'
-          url: '/tasks/' + task_id + '/comments'
+          url: '/tasks/' + commentData.task_id + '/comments'
           params: commentData
 
-      deleteComment: (commentData) ->
+      destroy: (commentData) ->
         $http.delete '/tasks/' + commentData.task_id + '/comments/' + commentData.id
     }
 ]

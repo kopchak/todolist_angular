@@ -10,17 +10,20 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-
 //= require angular
+//= require ng-token-auth
+//= require angular-cookie
 //= require ng-file-upload
 //= require angular-animate
 //= require angular-ui-router
 //= require angular-bootstrap
 //= require angular-ui-sortable
 //= require angular-rails-templates
+//= require underscore.js
 //= require todoApp
 
 //= require_tree .

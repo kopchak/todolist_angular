@@ -3,17 +3,16 @@
     %input{type: "checkbox", ng: {click: "taskDone(task)", model: "task.status"}}
   .task_info
     .task_title
-      %strong{class: "", ng: {init: "task.commentsList = false", click: 'showComments(task)', if: "!task.editTask"}}
-        Title: {{task.title}} Deadline: {{task.deadline}}
-    %form{name: "editTaskForm", class: "edit_task form-inline", ng: {submit: "updateTask(task, taskData)", if: "task.editTask"}}
-      %input.form-control.input-sm{type: "text", class: "edit_task_input", placeholder: "Set new title...", ng: {model: 'taskData.title'}, required: true}
-      %input.form-control.input-sm{type: "date", class: "edit_task_input_date", ng: {model: 'taskData.date'}, required: true}
-      %input.btn.btn-success.btn-sm{type: "submit", class: "edit_task_button", value: "Change", ng: {disabled: 'editTaskForm.$invalid'}}
+      %strong{ng: {init: "task.commentsList = false", click: 'showComments(task)', if: "!task.editTask"}}
+        #{I18n.t('task.title')}: {{task.title}} #{I18n.t('task.deadline')}: {{task.deadline}}
+    %form.edit_task.form-inline{name: "editTaskForm", ng: {submit: "updateTask(task)", if: "task.editTask"}}
+      %input.form-control.input-sm.edit_task_input{type: "text", placeholder: "#{I18n.t('task.input_edit')}", ng: {model: 'taskData.title'}, required: true}
+      %input.form-control.input-sm.edit_task_input_date{type: "date", ng: {model: 'taskData.deadline'}, required: true}
+      %input.btn.btn-success.btn-sm.edit_task_button{type: "submit", value: "#{I18n.t('task.submit_edit')}", ng: {disabled: 'editTaskForm.$invalid'}}
     .comments_block{ng: {if: "task.commentsList"}}
-      %strong Comments:
+      %strong #{I18n.t('task.comments')}:
       %ul.comments{ng: {include: "'angular/templates/comment.html'"}}
   .task_toolbar{ng: {show: "taskToolbar"}}
-    %input{class: "edit_task_img", src: "/assets/edit_task.png", type: "image", ng: {init: "task.editTask = false", click: 'showEditForm(task)'}}
-    %image{src: "/assets/delimiter toolbar_task_img.png"}
-    %image{class: "del_task_img", src: "/assets/delete_task.png", ng: {click: "deleteTask(task, $index)"}}
+    %span.glyphicon.glyphicon-pencil.edit_task_img{ng: {init: "task.editTask = false", click: 'showEditForm(task)'}}
+    %span.glyphicon.glyphicon-trash.del_task_img{ng: {click: "deleteTask(task, $index)"}}
 

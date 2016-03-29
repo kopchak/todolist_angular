@@ -1,8 +1,7 @@
 todoApp.controller 'ProjectsController', [
   '$scope'
-  '$http'
   'projectFactory'
-  ($scope, $http, projectFactory) ->
+  ($scope, projectFactory) ->
     $scope.projectData = {}
 
     getProjects = ->
@@ -10,19 +9,19 @@ todoApp.controller 'ProjectsController', [
         $scope.projects = data
 
     $scope.createProject = ->
-      projectFactory.addProject($scope.projectData).success (data) ->
+      projectFactory.create($scope.projectData).success (data) ->
         $scope.projects.push(data.project)
         $scope.projectData = {}
 
-    $scope.updateProject = (project, projectData) ->
-      project.title = projectData.title
-      projectFactory.updateProject(project)
-      project.editProject = !project.editProject
-      $scope.projectData = {}
+    $scope.updateProject = (project) ->
+      project.title = $scope.projectData.title
+      projectFactory.update(project).success (data) ->
+        project.editProject = false
+        $scope.projectData = {}
 
     $scope.deleteProject = (project, index) ->
-      $scope.projects.splice(index, 1)
-      projectFactory.deleteProject(project)
+      projectFactory.destroy(project).success (data) ->
+        $scope.projects.splice(index, 1)
 
     $scope.showEditForm = (project) ->
       $scope.projectData.title = project.title

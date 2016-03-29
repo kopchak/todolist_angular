@@ -5,19 +5,19 @@ todoApp.factory 'projectFactory', [
       getProjects: ->
         $http.get '/projects'
 
-      addProject: (projectData) ->
+      create: (projectData) ->
         $http
           method: 'POST'
           url: '/projects'
-          params: {title: projectData.title}
+          params: projectData
 
-      updateProject: (projectData) ->
+      update: (projectData) ->
         $http
           method: 'PATCH'
           url: '/projects/' + projectData.id
-          params: {id: projectData.id, title: projectData.title}
+          params: projectData
 
-      deleteProject: (projectData) ->
+      destroy: (projectData) ->
         $http.delete '/projects/' + projectData.id
     }
 ]

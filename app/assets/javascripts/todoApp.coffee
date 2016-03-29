@@ -5,6 +5,7 @@ window.todoApp = angular.module('TodoList', [
   'ui.sortable'
   'ui.bootstrap'
   'ngFileUpload'
+  'ng-token-auth'
 ])
 
 todoApp.config [

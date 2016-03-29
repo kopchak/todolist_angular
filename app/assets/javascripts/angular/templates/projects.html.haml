@@ -1,11 +1,11 @@
 .container
   .title
-    %h1 Simple Todo Lists
-    %h2 From Ruby Garage
+    %h1= I18n.t('main.info')
+    %h2= I18n.t('main.place_development')
   .projects{ng: {include: "'angular/templates/project.html'"}}
   .add_project
-    %input.btn.btn-primary{type: "button", class: "add_project_button", value: "Add ToDo List", ng: {click: 'addProject = true', hide: 'addProject'}}
-    %form{name: "projectForm",class: "add_project_form form-inline", ng: {submit: 'createProject()', show: 'addProject'}}
-      %input.form-control.input-sm{type: "text", placeholder: "Add a new todo list", ng: {model: 'projectData.title'}, required: true}
-      %input.btn.btn-primary.btn-sm{type: "submit", value: "Add", ng: {click: 'addProject = false', disabled: 'projectForm.$invalid'}}
-  %h5{class: "copyright"} ©Ruby Garage
+    %input.btn.btn-primary.add_project_button{type: "button", value: "#{I18n.t('main.add_project_btn')}", ng: {click: 'addProject = true', hide: 'addProject'}}
+    %form.add_project_form.form-inline{name: "projectForm", ng: {submit: 'createProject()', show: 'addProject'}}
+      %input.form-control.input-sm{type: "text", placeholder: "#{I18n.t('main.add_project_placeholder')}", ng: {model: 'projectData.title'}, required: true}
+      %input.btn.btn-primary.btn-sm{type: "submit", value: "#{I18n.t('main.submit_add_project')}", ng: {click: 'addProject = false', disabled: 'projectForm.$invalid'}}
+  %h5.copyright= I18n.t('main.copyright')

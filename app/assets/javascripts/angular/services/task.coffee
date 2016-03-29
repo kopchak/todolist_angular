@@ -2,19 +2,19 @@ todoApp.factory 'taskFactory', [
   '$http'
   ($http) ->
     {
-      addTask: (taskData, project_id) ->
+      create: (taskData) ->
         $http
           method: 'POST'
-          url: '/projects/' + project_id + '/tasks'
+          url: '/projects/' + taskData.project_id + '/tasks'
           params: taskData
 
-      editTask: (taskData) ->
+      update: (taskData) ->
         $http
           method: 'PATCH'
           url: '/projects/' + taskData.project_id + '/tasks/' + taskData.id
           params: taskData
 
-      deleteTask: (taskData) ->
+      destroy: (taskData) ->
         $http.delete '/projects/' + taskData.project_id + '/tasks/' + taskData.id
     }
 ]

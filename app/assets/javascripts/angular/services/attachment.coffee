@@ -1,8 +1,15 @@
 todoApp.factory 'attachmentFactory', [
   '$http'
-  ($http) ->
+  'Upload'
+  ($http, Upload) ->
     {
-      delAttachment: (attachment) ->
+      create: (file, comment_id) ->
+        Upload.upload
+          url: '/comments/' + comment_id + '/attachments'
+          method: 'POST'
+          file: file
+
+      destroy: (attachment) ->
         $http.delete '/comments/' + attachment.comment_id + '/attachments/' + attachment.id
     }
 ]
