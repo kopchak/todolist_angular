@@ -17,7 +17,10 @@ todoApp.config [
       .state('projects',
         url: '/projects'
         templateUrl: 'angular/templates/projects.html'
-        controller: 'ProjectsController')
+        controller: 'ProjectsController'
+        resolve: auth: ($auth, $state) ->
+          $auth.validateUser().catch (response) ->
+            $state.go 'sign_in')
       .state('sign_in',
         url: '/sign_in'
         templateUrl: 'angular/templates/sign_in.html'

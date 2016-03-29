@@ -1,6 +1,7 @@
 en:
   main:
-    copyright: "©Ruby Garage"
+    sign_out: Sign out
+    copyright: ©Ruby Garage
     info: Simple Todo Lists
     add_project_btn: Add ToDo List
     add_project_placeholder: Add a new todo list
