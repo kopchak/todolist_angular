@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource through: :current_user
 
   def index
     render json: @projects, root: false
@@ -11,7 +11,8 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    render json: @project.update(project_params)
+    @project.update(project_params)
+    render json: @project
   end
 
   def destroy

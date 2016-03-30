@@ -22,6 +22,7 @@
 //= require angular-ui-router
 //= require angular-bootstrap
 //= require angular-ui-sortable
+//= require angular-toastr
 //= require angular-rails-templates
 //= require underscore.js
 //= require todoApp

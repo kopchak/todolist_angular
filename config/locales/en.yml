@@ -23,3 +23,18 @@ en:
     submit_comment: Add comment
     del_element: x
     attach_file: Attach file
+  sign_in:
+    title: Sign in
+    email: Email
+    password: Password
+    submit_login: Sign in
+    goto_signup: Sign up
+    btn_fb_login: Sign in with Facebook
+  sign_up:
+    title: Sign up
+    email: Email
+    password: Password
+    confirm_pswrd: Password confirmation
+    submit_reg: Register
+    goto_login: Sign in
+    btn_fb_login: Sign in with Facebook

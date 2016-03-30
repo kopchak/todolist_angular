@@ -13,6 +13,6 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-    params.permit(:text, :file, :task_id)
+    params.permit(:text, :file)
   end
 end
