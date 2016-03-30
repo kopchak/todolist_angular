@@ -4,11 +4,11 @@
     %form{"ng-init" => "loginForm = {}"}
       .form-group
         %label= I18n.t('sign_in.email')
-        %input.form-control{:name => "email", "ng-model" => "loginForm.email", :required => "required", :type => "email"}/
+        %input.form-control{:name => "email", "ng-model" => "loginForm.email", :required => "required", :type => "email"}
       .form-group
         %label= I18n.t('sign_in.password')
-        %input.form-control{:name => "password", "ng-model" => "loginForm.password", :required => "required", :type => "password"}/
+        %input.form-control{:name => "password", "ng-model" => "loginForm.password", :required => "required", :type => "password"}
       %button.btn.btn-primary.btn-lg.btn-block{ng: {controller: "SessionsController", click: "handleLoginBtnClick()"}}= I18n.t('sign_in.submit_login')
       %button.btn.btn-primary.btn-lg.btn-block{ng: {controller: "SessionsController", click: "goRegistration()"}}= I18n.t('sign_in.goto_signup')
-  .fb_login
-    %button.btn.btn-primary.btn-lg.btn-block{"ng-click" => "authenticate('facebook')"}= I18n.t('sign_in.btn_fb_login')
+    .fb_login
+      %button.btn.btn-primary.btn-lg.btn-block{"ng-click" => "authenticate('facebook')"}= I18n.t('sign_in.btn_fb_login')

@@ -10,6 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require angular-toastr
  *= require_tree .
  *= require_self
  */
@@ -31,4 +32,8 @@ body {
 
 .sign_in_title, .sign_up_title {
   text-align: center;
+}
+
+.fb_login {
+  margin-top: 5px;
 }

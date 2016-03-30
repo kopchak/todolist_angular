@@ -1,8 +1,9 @@
 todoApp.controller 'CommentsController', [
   '$scope'
+  'toastr'
   'commentFactory'
   'attachmentFactory'
-  ($scope, commentFactory, attachmentFactory) ->
+  ($scope, toastr, commentFactory, attachmentFactory) ->
     $scope.files = {}
     $scope.commentData = {}
 
@@ -17,10 +18,12 @@ todoApp.controller 'CommentsController', [
           $scope.files = {}
         $scope.commentData = {}
         task.comments.push(data.comment)
+        toastr.success('Comment was created')
 
     $scope.deleteComment = (comment, index) ->
       commentFactory.destroy(comment).success (data) ->
         $scope.task.comments.splice(index, 1)
+        toastr.warning('Comment was deleted')
 
     $scope.delNewAttachment = (index) ->
       $scope.files.splice(index, 1)
@@ -28,5 +31,6 @@ todoApp.controller 'CommentsController', [
     $scope.deleteAttachment = (attachment, index) ->
       attachmentFactory.destroy(attachment).success (data) ->
         $scope.comment.attachments.splice(index, 1)
+        toastr.warning('Attached file was deleted')
 
 ]

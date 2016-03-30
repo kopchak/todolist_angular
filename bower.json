@@ -5,11 +5,11 @@
       "angular": "latest",
       "ng-token-auth": "latest",
       "ng-file-upload": "latest",
-      "angular-toastr": "latest",
       "angular-animate": "latest",
       "angular-ui-router": "latest",
       "angular-bootstrap": "latest",
-      "angular-ui-sortable": "latest"
+      "angular-ui-sortable": "latest",
+      "angular-toastr": "latest"
     }
   },
   "vendor": {

@@ -4,27 +4,25 @@ todoApp.controller 'SessionsController', [
   '$state'
   '$auth'
   ($scope, toastr, $state, $auth) ->
-    $scope.$on 'auth:login-success', (ev, user) ->
-      $state.go 'projects'
-
     $scope.$on 'auth:oauth-registration', (ev, message) ->
-      # handle success response
+      $state.go 'projects'
+      toastr.success('Sign in from Facebook account successfully completed')
 
     $scope.handleLoginBtnClick = ->
       $auth.submitLogin($scope.loginForm).then((resp) ->
-        toastr.success('Loged in success!')
+        $state.go 'projects'
+        toastr.success('Signed in successful')
       ).catch (resp) ->
-        # handle error response
+        toastr.error('Please fill in the fields correctly')
 
     $scope.handleSignOutBtnClick = ->
       $auth.signOut().then((resp) ->
-        $state.go 'sign_in'
-        toastr.success('Log out success!')
-        # handle success response
+        $state.go('sign_in')
+        toastr.success('Bye!')
       ).catch (resp) ->
-        # handle error response
+        toastr.error('Something wet wrong')
 
     $scope.goRegistration = ->
-      $state.go 'sign_up'
+      $state.go('sign_up')
 
 ]

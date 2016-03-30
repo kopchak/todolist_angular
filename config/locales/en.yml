@@ -34,7 +34,6 @@ en:
     title: Sign up
     email: Email
     password: Password
-    confirm_pswrd: Password confirmation
     submit_reg: Register
     goto_login: Sign in
     btn_fb_login: Sign in with Facebook

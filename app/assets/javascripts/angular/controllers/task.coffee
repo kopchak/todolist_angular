@@ -1,7 +1,8 @@
 todoApp.controller 'TasksController', [
   '$scope'
+  'toastr'
   'taskFactory'
-  ($scope, taskFactory) ->
+  ($scope, toastr, taskFactory) ->
     $scope.taskData = {}
 
     $scope.newDate = ->
@@ -13,6 +14,7 @@ todoApp.controller 'TasksController', [
         project.tasks.push(data.task)
         $scope.taskData = {}
         $scope.newDate()
+        toastr.success('Task was created')
 
     $scope.updateTask = (task) ->
       task.title = $scope.taskData.title
@@ -21,13 +23,16 @@ todoApp.controller 'TasksController', [
         task.deadline = data.task.deadline
         task.editTask = false
         $scope.taskData = {}
+        toastr.success('Task was updated')
 
     $scope.taskDone = (task) ->
-      taskFactory.update(task)
+      taskFactory.update(task).success (data) ->
+        toastr.success('Task was updated')
 
     $scope.deleteTask = (task, index) ->
       taskFactory.destroy(task).success (data) ->
         $scope.project.tasks.splice(index, 1)
+        toastr.warning('Task was deleted')
 
     $scope.showEditForm = (task) ->
       $scope.taskData.title = task.title
@@ -44,6 +49,7 @@ todoApp.controller 'TasksController', [
           index = $scope.project.tasks.indexOf(task)
           task.position = index
           taskFactory.update(task)
+        toastr.success('Task priority has been changed')
 
     $scope.newDate()
 
