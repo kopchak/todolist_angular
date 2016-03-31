@@ -16,7 +16,7 @@ todoApp.controller 'RegistrationsController', [
         $state.go 'projects'
         toastr.success('Welcome!', 'Registration success')
       ).catch (resp) ->
-        toastr.error('Please fill in the fields correctly')
+        toastr.error(resp.errors[0])
 
     $scope.goLogin = ->
       $state.go 'sign_in'

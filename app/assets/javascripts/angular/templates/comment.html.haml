@@ -10,7 +10,7 @@
 %form.add_comment.form-inline{name: "commentForm", ng: {controller: "CommentsController", submit: "addComment(task)"}}
   %input.form-control.input-sm{type: "text", placeholder: "#{I18n.t('comment.input_new_comment')}", ng:{model: 'commentData.text'}, required: true}
   %input.btn.btn-primary.btn-sm{type: "submit", value: "#{I18n.t('comment.submit_comment')}", ng: {disabled: 'commentForm.$invalid'}}
-  .button.btn.btn-primary.btn-sm(ng-model="files" ngf-multiple="true" ngf-select="")= I18n.t('comment.attach_file')
+  .button.btn.btn-primary.btn-sm(ng-model="files" ngf-multiple="true" ngf-select="" name="attachments")= I18n.t('comment.attach_file')
   .new_attachments
     %p{ng: {repeat: 'file in files'}}
       %span.glyphicon.glyphicon-file {{file.name}}

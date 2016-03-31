@@ -34,13 +34,14 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1'
   gem 'factory_girl_rails'
   gem 'capybara'
-  gem 'poltergeist'
+  gem 'selenium-webdriver'
 end
 
 group :test do
   gem 'faker'
   gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'launchy'
 end
 
 group :development do

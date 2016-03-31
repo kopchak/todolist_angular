@@ -6,12 +6,11 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 
 require 'spec_helper'
 require 'rspec/rails'
-require 'controllers_spec_helper'
+require 'devise'
 require 'capybara/rspec'
-require 'capybara/poltergeist'
+require 'controllers_spec_helper'
 
-Capybara.javascript_driver = :poltergeist
-Capybara.default_host = 'http://localhost:3000'
+Capybara.default_driver = :selenium
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -27,7 +26,7 @@ Capybara.default_host = 'http://localhost:3000'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/*.rb')].each { |f| require f }
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -37,16 +36,15 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include FactoryGirl::Syntax::Methods
+  config.include FeaturesSpecHelper,  type: :feature
+  config.include Devise::TestHelpers, type: :controller
 
-  config.include Devise::TestHelpers, :type => :controller
   config.include Warden::Test::Helpers
   config.before :suite do
     Warden.test_mode!
   end
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
-  config.use_transactional_fixtures = true
+
+  config.use_transactional_fixtures = false
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
@@ -69,11 +67,6 @@ RSpec.configure do |config|
   end
 
   config.infer_spec_type_from_file_location!
-
-  # Filter lines from Rails gems in backtraces.
-  config.filter_rails_from_backtrace!
-  # arbitrary gems may also be filtered via:
-  # config.filter_gems_from_backtrace("gem name")
 end
 
 Shoulda::Matchers.configure do |config|

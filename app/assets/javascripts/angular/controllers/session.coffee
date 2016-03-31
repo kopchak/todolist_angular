@@ -13,14 +13,14 @@ todoApp.controller 'SessionsController', [
         $state.go 'projects'
         toastr.success('Signed in successful')
       ).catch (resp) ->
-        toastr.error('Please fill in the fields correctly')
+        toastr.error(resp.errors[0])
 
     $scope.handleSignOutBtnClick = ->
       $auth.signOut().then((resp) ->
         $state.go('sign_in')
         toastr.success('Bye!')
       ).catch (resp) ->
-        toastr.error('Something wet wrong')
+        toastr.error(resp.errors[0])
 
     $scope.goRegistration = ->
       $state.go('sign_up')
