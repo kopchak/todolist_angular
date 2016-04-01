@@ -1,0 +1,25 @@
+<div class='project' ng-repeat='project in projects'>
+  <div class='project_block' ng-mouseenter='projectToolbar = true' ng-mouseleave='projectToolbar = false'>
+    <div class='project_info'>
+      <span class='glyphicon glyphicon-th-list'></span>
+      <strong class='project_title' ng-if='!project.editProject'>{{project.title}}</strong>
+    </div>
+    <form class='edit_project form-inline' name='projectForm' ng-if='project.editProject' ng-submit='updateProject(project)'>
+      <input class='edit_project_input form-control input-sm' ng-model='projectData.title' placeholder='Set new title' required type='text'>
+      <input class='btn btn-success btn-sm' ng-click='editProject = false' ng-disabled='projectForm.$invalid' type='submit' value='Change'>
+    </form>
+    <div class='project_toolbar' ng-show='projectToolbar'>
+      <span class='glyphicon glyphicon-pencil edit_project_img' ng-click='showEditForm(project)'></span>
+      <span class='glyphicon glyphicon-trash del_project_img' ng-click='deleteProject(project, $index)'></span>
+    </div>
+  </div>
+  <div class='add_task_block'>
+    <span class='glyphicon glyphicon-plus img_plus_task'></span>
+    <form class='add_task form-inline' name='taskForm' ng-controller='TasksController' ng-disabled='taskForm.$invalid' ng-submit='createTask(project)'>
+      <input class='form-control input-sm add_task_input' ng-model='taskData.title' placeholder='Start typing here to create a task...' required type='text'>
+      <input class='form-control input-sm add_task_input_date' ng-model='taskData.deadline' required type='date'>
+      <input class='btn btn-success btn-sm add_task_button' ng-disabled='taskForm.$invalid' type='submit' value='Add task'>
+    </form>
+  </div>
+  <ul class='task_list' ng-controller='TasksController' ng-include="'angular/templates/task.html'" ng-model='project.tasks' ui-sortable='sortableOptions'></ul>
+</div>

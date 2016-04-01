@@ -27,4 +27,7 @@
 //= require underscore.js
 //= require todoApp
 
+//= require_tree ./angular/templates/
+//= require_tree ./angular/controllers/
+//= require_tree ./angular/services/
 //= require_tree .

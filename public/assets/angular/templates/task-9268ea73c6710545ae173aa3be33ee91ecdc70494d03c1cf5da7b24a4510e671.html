@@ -1,0 +1,25 @@
+<li class='task_block' ng-mouseenter='taskToolbar = true' ng-mouseleave='taskToolbar = false' ng-repeat='task in project.tasks'>
+  <div class='task_status'>
+    <input ng-click='taskDone(task)' ng-model='task.status' type='checkbox'>
+  </div>
+  <div class='task_info'>
+    <div class='task_title'>
+      <strong ng-click='showComments(task)' ng-if='!task.editTask' ng-init='task.commentsList = false'>
+        Title: {{task.title}} Deadline: {{task.deadline}}
+      </strong>
+    </div>
+    <form class='edit_task form-inline' name='editTaskForm' ng-if='task.editTask' ng-submit='updateTask(task)'>
+      <input class='form-control input-sm edit_task_input' ng-model='taskData.title' placeholder='Set new title...' required type='text'>
+      <input class='form-control input-sm edit_task_input_date' ng-model='taskData.deadline' required type='date'>
+      <input class='btn btn-success btn-sm edit_task_button' ng-disabled='editTaskForm.$invalid' type='submit' value='Change'>
+    </form>
+    <div class='comments_block' ng-if='task.commentsList'>
+      <strong>Comments:</strong>
+      <ul class='comments' ng-include="'angular/templates/comment.html'"></ul>
+    </div>
+  </div>
+  <div class='task_toolbar' ng-show='taskToolbar'>
+    <span class='glyphicon glyphicon-pencil edit_task_img' ng-click='showEditForm(task)' ng-init='task.editTask = false'></span>
+    <span class='glyphicon glyphicon-trash del_task_img' ng-click='deleteTask(task, $index)'></span>
+  </div>
+</li>

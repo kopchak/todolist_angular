@@ -1,0 +1,16 @@
+<button class='btn btn-primary btn-sm sign_out' ng-click='handleSignOutBtnClick()' ng-controller='SessionsController'>Sign out</button>
+<div class='container'>
+  <div class='title'>
+    <h1>Simple Todo Lists</h1>
+    <h2>From Ruby Garage</h2>
+  </div>
+  <div class='projects' ng-include="'angular/templates/project.html'"></div>
+  <div class='add_project'>
+    <input class='btn btn-primary add_project_button' ng-click='addProject = true' ng-hide='addProject' type='button' value='Add ToDo List'>
+    <form class='add_project_form form-inline' name='projectForm' ng-show='addProject' ng-submit='createProject()'>
+      <input class='form-control input-sm' ng-model='projectData.title' placeholder='Add a new todo list' required type='text'>
+      <input class='btn btn-primary btn-sm' ng-click='addProject = false' ng-disabled='projectForm.$invalid' type='submit' value='Add'>
+    </form>
+  </div>
+  <h5 class='copyright'>©Ruby Garage</h5>
+</div>
