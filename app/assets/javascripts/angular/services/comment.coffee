@@ -9,6 +9,6 @@ todoApp.factory 'commentFactory', [
           params: commentData
 
       destroy: (commentData) ->
-        $http.delete '/tasks/' + commentData.task_id + '/comments/' + commentData.id
+        $http.delete '/comments/' + commentData.id
     }
 ]

@@ -10,6 +10,6 @@ todoApp.factory 'attachmentFactory', [
           file: file
 
       destroy: (attachment) ->
-        $http.delete '/comments/' + attachment.comment_id + '/attachments/' + attachment.id
+        $http.delete '/attachments/' + attachment.id
     }
 ]

@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   load_and_authorize_resource :project
-  load_and_authorize_resource through: :project
+  load_and_authorize_resource :task, through: :project, shallow: true
 
   def create
     @task.save
