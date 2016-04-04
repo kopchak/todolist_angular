@@ -7,13 +7,14 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'devise'
-require 'capybara/rspec'
 require 'controllers_spec_helper'
+require 'capybara/rspec'
+require 'capybara/poltergeist'
 
-# require 'capybara/poltergeist'
 # Capybara.javascript_driver = :poltergeist
-
 Capybara.default_driver = :selenium
+Capybara.default_host = 'http://localhost:3000'
+# Capybara.default_driver = :selenium
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -38,14 +39,10 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
+
   config.include FactoryGirl::Syntax::Methods
   config.include FeaturesSpecHelper,  type: :feature
   config.include Devise::TestHelpers, type: :controller
-
-  config.include Warden::Test::Helpers
-  config.before :suite do
-    Warden.test_mode!
-  end
 
   config.use_transactional_fixtures = false
 

@@ -1,14 +1,13 @@
 require "rails_helper"
 
-describe "Manage comment", js: true do
+feature "Manage comment" do
   before do
-    user = create(:user)
-    project = create(:project, user: user)
-    task = create(:task, project: project)
-    comment = create(:comment, task: task)
-    file = create(:attachment, comment: comment)
-    sign_in(user)
-    visit '/#/projects'
+    @user = create(:user)
+    sign_in(@user)
+    @project = create(:project, user: @user)
+    @task = create(:task, project: @project)
+    comment = create(:comment, task: @task)
+    @file = create(:attachment, comment: comment)
   end
 
   #  scenario "User creates new comment with file" do
@@ -27,9 +26,8 @@ describe "Manage comment", js: true do
   #   # expect(page).to have_content("Comment was created")
   # end
 
-  scenario "User remove file from comment" do
+  scenario "User remove file from comment", js: true do
     find('.task_title').click
-    # byebug
     find('.delete_attachment').click
     expect(page).to have_content("Attached file was deleted")
   end
