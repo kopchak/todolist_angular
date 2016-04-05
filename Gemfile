@@ -22,7 +22,7 @@ gem 'devise_token_auth'
 gem 'omniauth-facebook'
 gem 'rails_12factor', group: :production
 gem 'cancancan', '~> 1.10'
-
+gem "autoprefixer-rails"
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.1'
