@@ -13,7 +13,7 @@ describe "Manage attachment", js: true do
    scenario "User creates new comment with file" do
     find('.task_title').click
     fill_in('New comment', with: Faker::Lorem.word)
-    attach_file('attachment', "#{Rails.root}/spec/fixtures/files/image.png")
+    page.driver.browser.all(:xpath, '//input[@name="attachment"]')[0].send_keys("#{Rails.root}/spec/fixtures/files/image.png")
     click_button('Add comment')
     expect(page).to have_link("image.png")
     expect(page).to have_content("Comment was created")

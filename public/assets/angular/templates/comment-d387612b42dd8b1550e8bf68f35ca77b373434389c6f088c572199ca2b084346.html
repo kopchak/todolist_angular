@@ -1,0 +1,28 @@
+<li class='comment' ng-repeat='comment in task.comments'>
+  <p>
+    {{comment.text}}
+    <a class='close' ng-click='deleteComment(comment, $index)' ng-controller='CommentsController'>x</a>
+  </p>
+  <ul class='comment_files'>
+    <li ng-repeat='attachment in comment.attachments'>
+      <span class='glyphicon glyphicon-file'>
+        <a download href='{{attachment.file.file.url}}'>{{attachment.file_identifier}}</a>
+      </span>
+      <a class='delete_attachment' ng-click='deleteAttachment(attachment, $index)' ng-controller='CommentsController'>x</a>
+    </li>
+  </ul>
+</li>
+<form class='add_comment form-inline' name='commentForm' ng-controller='CommentsController' ng-submit='addComment(task)'>
+  <input class='form-control input-sm' ng-model='commentData.text' placeholder='New comment' required type='text'>
+  <input class='btn btn-primary btn-sm' ng-disabled='commentForm.$invalid' type='submit' value='Add comment'>
+  <span class='btn btn-primary btn-sm btn-file'>
+    Attach file
+    <input name='attachment' ng-model='files' ngf-multiple='true' ngf-select='' type='file'>
+  </span>
+  <div class='new_attachments'>
+    <p ng-repeat='file in files'>
+      <span class='glyphicon glyphicon-file'>{{file.name}}</span>
+      <a class='del_new_attachment' href='' ng-click='delNewAttachment($index)'>x</a>
+    </p>
+  </div>
+</form>
