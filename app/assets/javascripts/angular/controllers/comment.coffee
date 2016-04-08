@@ -18,12 +18,12 @@ todoApp.controller 'CommentsController', [
           $scope.files = {}
         $scope.commentData = {}
         task.comments.push(data.comment)
-        toastr.success('Comment was created')
+        toastr.success(I18n.t('toastr.comment.create'))
 
     $scope.deleteComment = (comment, index) ->
       Restangular.one("comments", comment.id).remove().then (data) ->
         $scope.task.comments.splice(index, 1)
-        toastr.warning('Comment was deleted')
+        toastr.warning(I18n.t('toastr.comment.delete'))
 
     $scope.delNewAttachment = (index) ->
       $scope.files.splice(index, 1)
@@ -31,6 +31,6 @@ todoApp.controller 'CommentsController', [
     $scope.deleteAttachment = (attachment, index) ->
       Restangular.one("attachments", attachment.id).remove().then (data) ->
         $scope.comment.attachments.splice(index, 1)
-        toastr.warning('Attached file was deleted')
+        toastr.warning(I18n.t('toastr.attachment.delete'))
 
 ]

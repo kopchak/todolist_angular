@@ -37,3 +37,28 @@ en:
     submit_reg: Register
     goto_login: Sign in
     btn_fb_login: Sign in with Facebook
+  toastr:
+    project:
+      create: Todo list was created
+      update: Todo list was updated
+      delete: Todo list was deleted
+    task:
+      create: Task was created
+      update: Task was updated
+      delete: Task was deleted
+      change_position: Task priority has been changed
+    comment:
+      create: Comment was created
+      delete: Comment was deleted
+    attachment:
+      delete: Attached file was deleted
+    sign_up:
+      fb_login: Sign in from Facebook account successfully completed
+      greeting: Welcome!
+      success: Registration success
+    sign_in:
+      fb_login: Sign in from Facebook account successfully completed
+      success: Signed in successful
+      parting: Bye!
+
+

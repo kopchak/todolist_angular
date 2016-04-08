@@ -14,7 +14,7 @@ todoApp.controller 'TasksController', [
         project.tasks.push(data.task)
         $scope.taskData = {}
         $scope.newDate()
-        toastr.success('Task was created')
+        toastr.success(I18n.t('toastr.task.create'))
 
     $scope.updateTask = (task) ->
       task.title = $scope.taskData.title
@@ -23,16 +23,16 @@ todoApp.controller 'TasksController', [
         task.deadline = data.task.deadline
         task.editTask = false
         $scope.taskData = {}
-        toastr.success('Task was updated')
+        toastr.success(I18n.t('toastr.task.update'))
 
     $scope.taskDone = (task) ->
       Restangular.one("tasks", task.id).put(task).then (data) ->
-        toastr.success('Task was updated')
+        toastr.success(I18n.t('toastr.task.update'))
 
     $scope.deleteTask = (task, index) ->
       Restangular.one("tasks", task.id).remove().then (data) ->
         $scope.project.tasks.splice(index, 1)
-        toastr.warning('Task was deleted')
+        toastr.warning(I18n.t('toastr.task.delete'))
 
     $scope.showEditForm = (task) ->
       $scope.taskData.title = task.title
@@ -49,7 +49,7 @@ todoApp.controller 'TasksController', [
           index = $scope.project.tasks.indexOf(task)
           task.position = index
           Restangular.one("tasks", task.id).put(task)
-        toastr.success('Task priority has been changed')
+        toastr.success(I18n.t('toastr.task.change_position'))
 
 
     $scope.newDate()

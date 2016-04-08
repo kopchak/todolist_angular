@@ -10,7 +10,6 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
@@ -27,6 +26,10 @@
 //= require underscore.js
 //= require todoApp
 //= require restangular
+
+//= require i18n
+//= require i18n.js
+//= require i18n/translations
 
 //= require_tree ./angular/templates/
 //= require_tree ./angular/controllers/

@@ -47,3 +47,9 @@ todoApp.run [
     $auth.validateUser().then (response) ->
       $state.go('projects')
 ]
+
+todoApp.config [
+  'toastrConfig'
+  (toastrConfig) ->
+    angular.extend toastrConfig, preventOpenDuplicates: true
+]

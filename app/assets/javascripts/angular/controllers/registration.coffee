@@ -6,7 +6,7 @@ todoApp.controller 'RegistrationsController', [
   ($scope, $state, $auth, toastr) ->
     $scope.$on 'auth:oauth-registration', (ev, message) ->
       $state.go 'projects'
-      toastr.success('Sign in from Facebook account successfully completed')
+      toastr.success(I18n.t('toastr.sign_up.fb_login'))
 
     $scope.handleRegBtnClick = ->
       $auth.submitRegistration($scope.registrationForm).then( (resp) ->
@@ -14,7 +14,7 @@ todoApp.controller 'RegistrationsController', [
           email: $scope.registrationForm.email
           password: $scope.registrationForm.password
         $state.go 'projects'
-        toastr.success('Welcome!', 'Registration success')
+        toastr.success(I18n.t('toastr.sign_up.greeting'), I18n.t('toastr.sign_up.success'))
       ).catch (resp) ->
         toastr.error(resp.errors[0])
 
