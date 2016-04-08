@@ -26,6 +26,7 @@
 //= require angular-rails-templates
 //= require underscore.js
 //= require todoApp
+//= require restangular
 
 //= require_tree ./angular/templates/
 //= require_tree ./angular/controllers/

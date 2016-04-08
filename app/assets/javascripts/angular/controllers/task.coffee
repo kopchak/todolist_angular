@@ -1,8 +1,8 @@
 todoApp.controller 'TasksController', [
   '$scope'
   'toastr'
-  'taskFactory'
-  ($scope, toastr, taskFactory) ->
+  'Restangular'
+  ($scope, toastr, Restangular) ->
     $scope.taskData = {}
 
     $scope.newDate = ->
@@ -10,7 +10,7 @@ todoApp.controller 'TasksController', [
 
     $scope.createTask = (project) ->
       $scope.taskData.project_id = project.id
-      taskFactory.create($scope.taskData).success (data) ->
+      Restangular.one('projects', project.id).all('tasks').post($scope.taskData).then (data) ->
         project.tasks.push(data.task)
         $scope.taskData = {}
         $scope.newDate()
@@ -19,18 +19,18 @@ todoApp.controller 'TasksController', [
     $scope.updateTask = (task) ->
       task.title = $scope.taskData.title
       task.deadline = $scope.taskData.deadline
-      taskFactory.update(task).success (data) ->
+      Restangular.one("tasks", task.id).put($scope.taskData).then (data) ->
         task.deadline = data.task.deadline
         task.editTask = false
         $scope.taskData = {}
         toastr.success('Task was updated')
 
     $scope.taskDone = (task) ->
-      taskFactory.update(task).success (data) ->
+      Restangular.one("tasks", task.id).put(task).then (data) ->
         toastr.success('Task was updated')
 
     $scope.deleteTask = (task, index) ->
-      taskFactory.destroy(task).success (data) ->
+      Restangular.one("tasks", task.id).remove().then (data) ->
         $scope.project.tasks.splice(index, 1)
         toastr.warning('Task was deleted')
 
@@ -48,8 +48,9 @@ todoApp.controller 'TasksController', [
         tasks.map (task) ->
           index = $scope.project.tasks.indexOf(task)
           task.position = index
-          taskFactory.update(task)
+          Restangular.one("tasks", task.id).put(task)
         toastr.success('Task priority has been changed')
+
 
     $scope.newDate()
 

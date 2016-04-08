@@ -3,6 +3,7 @@
     "name": "bower-rails generated lib assets",
     "dependencies": {
       "angular": "latest",
+      "restangular": "latest",
       "ng-token-auth": "latest",
       "ng-file-upload": "latest",
       "angular-animate": "latest",

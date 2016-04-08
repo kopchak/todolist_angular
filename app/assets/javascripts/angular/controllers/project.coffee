@@ -1,29 +1,30 @@
 todoApp.controller 'ProjectsController', [
   '$scope'
   'toastr'
-  'projectFactory'
-  ($scope, toastr, projectFactory) ->
+  'Restangular'
+  ($scope, toastr, Restangular) ->
     $scope.projectData = {}
+    # window.location.href = '/#/projects'
 
     getProjects = ->
-      projectFactory.getProjects().success (data) ->
-        $scope.projects = data
+      Restangular.all('projects').getList().then (projects) ->
+        $scope.projects = projects
 
     $scope.createProject = ->
-      projectFactory.create($scope.projectData).success (data) ->
+      Restangular.all('projects').post($scope.projectData).then (data) ->
         $scope.projects.push(data.project)
         $scope.projectData = {}
         toastr.success('Todo list was created')
 
     $scope.updateProject = (project) ->
       project.title = $scope.projectData.title
-      projectFactory.update(project).success (data) ->
+      Restangular.one("projects", project.id).put($scope.projectData).then (data) ->
         project.editProject = false
         $scope.projectData = {}
         toastr.success('Todo list was updated')
 
     $scope.deleteProject = (project, index) ->
-      projectFactory.destroy(project).success (data) ->
+      Restangular.one("projects", project.id).remove().then ->
         $scope.projects.splice(index, 1)
         toastr.warning('Todo list was deleted')
 

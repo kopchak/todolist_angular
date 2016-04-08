@@ -5,11 +5,8 @@ todoApp.factory 'attachmentFactory', [
     {
       create: (file, comment_id) ->
         Upload.upload
-          url: '/comments/' + comment_id + '/attachments'
           method: 'POST'
+          url: '/comments/' + comment_id + '/attachments'
           file: file
-
-      destroy: (attachment) ->
-        $http.delete '/attachments/' + attachment.id
     }
 ]

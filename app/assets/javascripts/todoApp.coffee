@@ -7,6 +7,7 @@ window.todoApp = angular.module('TodoList', [
   'ngFileUpload'
   'ng-token-auth'
   'toastr'
+  'restangular'
 ])
 
 todoApp.config [
@@ -24,7 +25,7 @@ todoApp.config [
           '$state'
           ($auth, $state) ->
             $auth.validateUser().catch (response) ->
-              $state.go 'sign_in'
+              $state.go('sign_in')
         ])
       .state('sign_in',
         url: '/sign_in'
@@ -34,7 +35,7 @@ todoApp.config [
         url: '/sign_up'
         templateUrl: 'angular/templates/sign_up.html'
         controller: 'RegistrationsController')
-    $urlRouterProvider.otherwise 'sign_in'
+    $urlRouterProvider.otherwise('sign_in')
     $authProvider.configure
       apiUrl: ''
 ]
@@ -44,5 +45,5 @@ todoApp.run [
   '$state'
   ($auth, $state) ->
     $auth.validateUser().then (response) ->
-      $state.go 'projects'
+      $state.go('projects')
 ]
