@@ -5,7 +5,6 @@ todoApp.controller 'SessionsController', [
   '$auth'
   ($scope, toastr, $state, $auth) ->
     $scope.$on 'auth:oauth-registration', (ev, message) ->
-      $state.go 'projects'
       toastr.success(I18n.t('toastr.sign_in.fb_login'))
 
     $scope.handleLoginBtnClick = ->

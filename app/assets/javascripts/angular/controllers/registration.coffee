@@ -5,7 +5,6 @@ todoApp.controller 'RegistrationsController', [
   'toastr'
   ($scope, $state, $auth, toastr) ->
     $scope.$on 'auth:oauth-registration', (ev, message) ->
-      $state.go 'projects'
       toastr.success(I18n.t('toastr.sign_up.fb_login'))
 
     $scope.handleRegBtnClick = ->

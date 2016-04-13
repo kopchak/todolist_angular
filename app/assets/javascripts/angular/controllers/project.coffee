@@ -4,7 +4,7 @@ todoApp.controller 'ProjectsController', [
   'Restangular'
   ($scope, toastr, Restangular) ->
     $scope.projectData = {}
-    # window.location.href = '/#/projects'
+    window.location.href = '/#/projects'
 
     getProjects = ->
       Restangular.all('projects').getList().then (projects) ->
